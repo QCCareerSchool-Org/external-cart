@@ -1,34 +1,41 @@
 'use client';
 
-import { CourseCode } from "@/domain/courseCode";
-import { ActionDispatch, createContext, FC, PropsWithChildren, useContext, useReducer } from "react";
+import type { ActionDispatch, FC, PropsWithChildren, } from "react";
+import { createContext, useContext, useEffect, useReducer, useRef } from "react";
 
-type CartState = {
-  selected: CourseCode[];
-}
+import type { CartStatePersistence } from "./persistence";
+import { createCookieCartStatePersistence } from "./persistence";
+import type { CartAction, CartState } from "./state";
+import { cartReducer, initialCartState } from "./state";
 
-const initialCartState = {
-  selected: [],
-};
-
-type CartAction =
-  | { type: 'COURSE_ADDED', payload: CourseCode }
-  | { type: 'COURSE_REMOVED', payload: CourseCode };
-
-const cartReducer = (state: CartState, action: CartAction): CartState => {
-  switch (action.type) {
-    case 'COURSE_ADDED':
-      return { ...state, selected: [...state.selected, action.payload] };
-    case 'COURSE_REMOVED':
-      return { ...state, selected: state.selected.filter(c => c !== action.payload) }
-  }
-}
+const defaultCartStatePersistence = createCookieCartStatePersistence();
 
 const cartStateContext = createContext<CartState>(initialCartState);
 const cartDispatchContext = createContext<ActionDispatch<[action: CartAction]>>(state => state);
 
-export const CartStateProvider: FC<PropsWithChildren> = ({ children }) => {
+interface Props {
+  persistence?: CartStatePersistence;
+}
+
+export const CartStateProvider: FC<PropsWithChildren<Props>> = ({ persistence = defaultCartStatePersistence, children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialCartState);
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    const persistedState = persistence.load();
+    if (persistedState) {
+      dispatch({ type: 'HYDRATE', payload: persistedState });
+    }
+  }, [persistence]);
+
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+
+    persistence.save(state);
+  }, [persistence, state]);
 
   return (
     <cartStateContext.Provider value={state}>
@@ -39,9 +46,13 @@ export const CartStateProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-export const useCartState = (): [ state: CartState, dispatch: ActionDispatch<[action: CartAction]> ] => {
-  const state =  useContext(cartStateContext);
+export const useCartState = (): [state: CartState, dispatch: ActionDispatch<[action: CartAction]>] => {
+  const state = useContext(cartStateContext);
   const dispatch = useContext(cartDispatchContext);
 
-  return [ state, dispatch ];
-}
+  return [state, dispatch];
+};
+
+export type { CartAction, CartState } from "./state";
+export type { CartStatePersistence } from "./persistence";
+export { createCookieCartStatePersistence } from "./persistence";

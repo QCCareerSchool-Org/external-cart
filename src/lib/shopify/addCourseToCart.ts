@@ -4,7 +4,7 @@ import { failure, success } from 'generic-result-type';
 import { shopifyClient } from '.';
 import type { Cart } from './createCart';
 import type { CourseCode } from '@/domain/courseCode';
-import { getShopifyId } from '@/domain/courseCode';
+import { getCourse } from '@/domain/course';
 
 const PRODUCT_VARIANT_ID_QUERY = `
   query getProductVariantIdForCart($id: ID!, $country: CountryCode)
@@ -61,9 +61,14 @@ interface CartLinesAddResponse {
 
 export const addCourseToCart = async (cartId: string, courseCode: CourseCode, countryCode: string): Promise<Result<Cart>> => {
   const normalizedCountryCode = countryCode.toUpperCase();
+  const course = getCourse(courseCode);
+
+  if (!course?.shopifyProductId) {
+    return failure(Error('Could not find a Shopify product for this course'));
+  }
 
   const getProductVariables = {
-    id: `gid://shopify/Product/${getShopifyId(courseCode)}`,
+    id: `gid://shopify/Product/${course.shopifyProductId}`,
     country: normalizedCountryCode,
   };
 
