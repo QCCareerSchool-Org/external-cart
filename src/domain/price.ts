@@ -1,16 +1,13 @@
+import Big from "big.js";
 import { CurrencyCode } from "./currencyCode";
 
 export interface Price {
-  amount: number;
   currencyCode: CurrencyCode;
-  original?: {
-    amount: number;
-    currencyCode: CurrencyCode;
-  }
+  amount: Big;
+  original?: Big;
   paymentPlan?: {
     installmentCount: number;
-    deposit: number;
-    installmentAmount: number;
-    currencyCode: number;
-  }
+    deposit: Big;
+    installmentAmount: Big;
+  };
 }
