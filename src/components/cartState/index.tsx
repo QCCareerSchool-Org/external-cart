@@ -39,10 +39,9 @@ export const CartStateProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-export const useCartState = (): CartState => {
-  return useContext(cartStateContext);
-}
+export const useCartState = (): [ state: CartState, dispatch: ActionDispatch<[action: CartAction]> ] => {
+  const state =  useContext(cartStateContext);
+  const dispatch = useContext(cartDispatchContext);
 
-export const useCartDispatch = (): ActionDispatch<[action: CartAction]> => {
-  return useContext(cartDispatchContext);
+  return [ state, dispatch ];
 }

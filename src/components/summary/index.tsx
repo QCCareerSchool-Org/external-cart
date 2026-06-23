@@ -8,7 +8,7 @@ export const Summary: FC = () => {
 
   return (
     <pre>
-      {JSON.stringify(cartState)}
+      {JSON.stringify(cartState, null, ' ')}
     </pre>
   );
 }
