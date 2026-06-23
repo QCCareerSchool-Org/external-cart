@@ -1,5 +1,6 @@
 import { Cart } from "@/components/cart";
-import { makeupCourseCodes } from "@/domain/makeup/courseCode";
+import { makeupCourses } from "@/domain/makeup/course";
+import { getSchool } from "@/domain/school";
 import { getServerData } from "@/lib/getServerData";
 import { PageComponent } from "@/serverComponent";
 
@@ -10,8 +11,8 @@ const MakeupPage: PageComponent = async () => {
     <>
       <h1>Makeup</h1>
       <Cart
-        schoolSlug="makeup"
-        courseCodes={makeupCourseCodes}
+        school={getSchool('makeup')}
+        courses={makeupCourses}
         successPage="https://www.qcmakeupacademy.com/welcome-to-the-school"
         countryCode={countryCode}
         provinceCode={provinceCode}

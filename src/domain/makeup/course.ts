@@ -1,43 +1,56 @@
-import { Course } from "../course";
-import { MakeupCourseCode } from "./courseCode";
+import type { Course } from "../course";
+import type { MakeupCourseCode } from "./courseCode";
 
-export const makeupCourses: Record<MakeupCourseCode, Course> = {
-  AB: {
+type MakeupCourse = Course<MakeupCourseCode>;
+
+export const makeupCourses: MakeupCourse[] = [
+  {
+    code: 'AB',
     name: 'Airbrush Makeup Workshop',
     shopifyProductId: ''
   },
-  AM: {
+  {
+    code: 'AM',
     name: 'All-Access Program',
     shopifyProductId: ''
   },
-  HS: {
+  {
+    code: 'HS',
     name: 'Hairstyling Workshop',
     shopifyProductId: ''
   },
-  MW: {
+  {
+    code: 'MW',
     name: 'Pro Makeup Workshop',
     shopifyProductId: ''
   },
-  MZ: {
+  {
+    code: 'MZ',
     name: 'Master Makeup Artistry',
     shopifyProductId: ''
   },
-  PF: {
+  {
+    code: 'PF',
     name: 'Fashion Styling',
     shopifyProductId: ''
   },
-  PW: {
+  {
+    code: 'PW',
     name: 'Portfolio Development Workshop',
     shopifyProductId: ''
   },
-  SF: {
+  {
+    code: 'SF',
     name: 'Special Effects Workshop',
     shopifyProductId: ''
   },
-  SK: {
+  {
+    code: 'SK',
     name: 'Skincare',
     shopifyProductId: ''
   },
-}
+];
 
-export const getMakeupCourse = (courseCode: MakeupCourseCode) => makeupCourses[courseCode];
+export const getMakeupCourse = (courseCode: MakeupCourseCode): MakeupCourse | undefined => {
+  return makeupCourses.find(c => c.code === courseCode);
+}

@@ -1,18 +1,19 @@
 'use client';
 
 import { Course } from "@/domain/course";
+import { CourseCode } from "@/domain/courseCode";
 import { ChangeEventHandler, FC } from "react";
 
 interface Props {
   course: Course;
   checked: boolean;
-  onChange: (shopifyProductId: string) => void;
+  onChange: (courseCode: CourseCode, checked: boolean) => void;
 }
 
 export const Checkbox: FC<Props> = ({ course, checked, onChange }) => {
   
-  const handleChange: ChangeEventHandler<HTMLInputElement> = () => {
-    onChange(course.shopifyProductId);
+  const handleChange: ChangeEventHandler<HTMLInputElement> = e => {
+    onChange(course.code, e.target.checked);
   }
 
   return (

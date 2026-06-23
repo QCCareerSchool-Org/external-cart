@@ -1,9 +1,7 @@
 'use client';
 
-import { Course, getCourse } from "@/domain/course";
-import { CourseCode } from "@/domain/courseCode";
-import { School, schools } from "@/domain/school";
-import { SchoolSlug } from "@/domain/schoolSlug"
+import { Course } from "@/domain/course";
+import { School } from "@/domain/school";
 import { FC, PropsWithChildren, useActionState } from "react";
 import { initialState } from "./state";
 import { action } from "./action";
