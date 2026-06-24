@@ -3,6 +3,7 @@
 import type { FC, PropsWithChildren, SyntheticEvent } from 'react';
 import { useActionState } from 'react';
 
+import { Button } from '../button';
 import { Card } from '../card';
 import { action } from './action';
 import { initialState } from './state';
@@ -25,7 +26,7 @@ export const Form: FC<PropsWithChildren<Props>> = ({ countryCode, children }) =>
     <form action={dispatch} onReset={handleReset} className="flex flex-col gap-6">
       <input type="hidden" name="countryCode" value={countryCode} />
       {children}
-      <Card variant="cta" className="sm:flex sm:items-center sm:justify-between sm:gap-5">
+      <Card className="sm:flex sm:items-center sm:justify-between sm:gap-5">
         <div>
           <SectionEyebrow tone="light">Ready?</SectionEyebrow>
           <p className="mt-1 text-sm font-semibold text-muted">
@@ -39,9 +40,9 @@ export const Form: FC<PropsWithChildren<Props>> = ({ countryCode, children }) =>
             </p>
           )}
         </div>
-        <button className="mt-4 w-full rounded-full bg-accent px-7 py-4 text-sm font-black uppercase tracking-[0.18em] text-foreground-inverse shadow transition hover:-translate-y-0.5 hover:brightness-95 disabled:cursor-not-allowed disabled:bg-border disabled:shadow-none sm:mt-0 sm:w-auto" type="submit" disabled={cartState.selected.length === 0 || isPending}>
+        <Button className="mt-4 w-full sm:mt-0 sm:w-auto" type="submit" disabled={cartState.selected.length === 0 || isPending}>
           {isPending ? 'Creating checkout' : 'Checkout'}
-        </button>
+        </Button>
       </Card>
     </form>
   );

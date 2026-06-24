@@ -28,11 +28,11 @@ export const CourseSelection: FC<Props> = ({ courses, prices }) => {
   };
 
   return (
-    <Card as="section" variant="panel">
+    <Card as="section">
       <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <SectionEyebrow tone="light">Step 1</SectionEyebrow>
-          <h2 className="font-serif text-3xl font-black tracking-[-0.04em] text-foreground">Choose your courses</h2>
+          <h2 className="font-serif text-3xl font-bold">Choose your courses</h2>
         </div>
         <p className="text-sm font-semibold text-muted">{cartState.selected.length} selected</p>
       </div>

@@ -44,20 +44,19 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
     const course = courses.find(c => c.code === courseCode);
     return course ? [ course ] : [];
   });
-  const selectedWithoutPrices = cartState.selected.filter(courseCode => !prices[courseCode]);
 
   return (
     <Card as="section" variant="panelDark" className="lg:sticky lg:top-6">
       <div className="mb-5 border-b border-foreground-inverse/20 pb-5">
         <SectionEyebrow tone="dark">Step 2</SectionEyebrow>
-        <h2 className="mt-1 font-serif text-3xl font-black tracking-[-0.04em]">Review</h2>
-        <p className="mt-2 text-sm leading-6 text-foreground-inverse/70">
+        <h2 className="mt-1 font-serif text-3xl font-bold">Review</h2>
+        <p className="mt-2 leading-6 text-foreground-inverse/80">
           Your checkout cart is created only when you press checkout.
         </p>
       </div>
 
       {selectedCourses.length === 0 ? (
-        <Card as="div" variant="empty">
+        <Card variant="empty">
           No courses selected yet.
         </Card>
       ) : (
@@ -66,15 +65,13 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
             const selectedPrice = selectedPrices.find(item => item.courseCode === course.code);
 
             return (
-              <Card as="div" variant="optionDark" key={course.code} className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-highlight">{course.code}</p>
-                  <p className="mt-1 text-sm font-bold leading-5">{course.name}</p>
-                </div>
-                <p className="shrink-0 text-sm font-black text-foreground-inverse">
+              <Card as="div" variant="summary" key={course.code} className="flex items-start justify-between gap-4">
+                <p className="text-sm font-bold leading-5">{course.name}</p>
+                <p className="shrink-0 text-sm font-bold text-foreground-inverse">
                   {selectedPrice
                     ? formatPrice(selectedPrice.price.amount, selectedPrice.price.currencyCode)
-                    : 'Pending'}
+                    : 'Pending'
+                  }
                 </p>
               </Card>
             );
@@ -89,19 +86,13 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
           Object.entries(totals).map(([ currencyCode, total ]) => (
             <div key={currencyCode} className="flex items-end justify-between gap-4">
               <span className="text-sm font-bold uppercase tracking-[0.18em] text-highlight">Total</span>
-              <span className="font-serif text-3xl font-black tracking-[-0.04em]">
+              <span className="font-serif text-3xl font-bold tracking-[-0.04em]">
                 {formatPrice(total, currencyCode as CurrencyCode)}
               </span>
             </div>
           ))
         )}
       </div>
-
-      {selectedWithoutPrices.length > 0 && (
-        <p className="mt-4 rounded-2xl bg-accent/20 p-3 text-sm font-semibold text-accent-muted">
-          Price unavailable for: {selectedWithoutPrices.join(', ')}
-        </p>
-      )}
     </Card>
   );
 };

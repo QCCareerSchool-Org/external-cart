@@ -1,8 +1,13 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google'; // eslint-disable-line camelcase
+import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google'; // eslint-disable-line camelcase
 
 import './globals.css';
 import type { LayoutComponent } from '@/serverComponent';
+
+const playfairDisplay = Playfair_Display({
+  variable: '--font-playfair-display',
+  subsets: [ 'latin' ],
+});
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -21,8 +26,8 @@ export const metadata: Metadata = {
 
 const RootLayout: LayoutComponent = ({ children }) => {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );
 };

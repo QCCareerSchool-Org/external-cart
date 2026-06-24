@@ -49,26 +49,14 @@ export const Checkbox: FC<Props> = ({ course, price, checked, onChange }) => {
           ? cn(cardBaseClassName, '-translate-y-0.5')
           : cn(cardBaseClassName, 'group-hover:-translate-y-0.5 group-hover:border-accent')}
       >
-        <span className={markerClassName}>
-          ✓
-        </span>
+        <span className={markerClassName}>✓</span>
         <span className="min-w-0 flex-1">
-          <span className="mb-2 flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-surface-inverse px-2.5 py-1 text-xs font-black uppercase tracking-[0.12em] text-highlight">
-              {course.code}
-            </span>
-            {!price && (
-              <span className="rounded-full bg-border px-2.5 py-1 text-xs font-bold text-muted">
-                Price pending
-              </span>
-            )}
-          </span>
-          <span className="block text-lg font-black leading-tight tracking-[-0.02em] text-foreground">
+          <div className="text-lg font-bold leading-tight text-foreground">
             {course.name}
-          </span>
-          <span className="mt-2 block text-sm font-bold text-muted">
-            {price ? formatPrice(price) : 'Checkout availability confirmed on submit'}
-          </span>
+          </div>
+          <div className="mt-2 text-sm font-bold text-muted">
+            {price ? formatPrice(price) : '(Price pending)'}
+          </div>
         </span>
       </Card>
     </label>

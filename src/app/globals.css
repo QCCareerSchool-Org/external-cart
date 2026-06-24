@@ -5,26 +5,28 @@
   --foreground: #111827;
   --surface: #ffffff;
   --surface-inverse: #111827;
+  --surface-inverse-muted: #1f2937;
   --foreground-inverse: #f9fafb;
   --muted: #6b7280;
   --border: #d1d5db;
   --accent: #2563eb;
   --accent-muted: #dbeafe;
   --highlight: #0ea5e9;
-  --box-shadow: 0 0.125rem 0.75rem rgb(0 0 0 / 0.15);
+  --box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 0.15);
 }
 
 .makeup-theme {
-  --background: #f4eadb;
-  --foreground: #21160f;
-  --surface: #fffaf1;
-  --surface-inverse: #2a1a11;
-  --foreground-inverse: #fff6e8;
-  --muted: #7a6249;
-  --border: #d8c4a5;
-  --accent: #e36537;
-  --accent-muted: #fff2df;
-  --highlight: #f6c44f;
+  --background: #fbf6f4;
+  --foreground: #23191b;
+  --surface: #fffdfb;
+  --surface-inverse: #171315;
+  --surface-inverse-muted: #2a2024;
+  --foreground-inverse: #fff7f4;
+  --muted: #75666a;
+  --border: #e5d8d4;
+  --accent: #c92545;
+  --accent-muted: #fde7ec;
+  --highlight: #ff5c7a;
 }
 
 .design-theme {
@@ -32,6 +34,7 @@
   --foreground: #0f172a;
   --surface: #ffffff;
   --surface-inverse: #0f2a4a;
+  --surface-inverse-muted: #1d4d7a;
   --foreground-inverse: #f8fafc;
   --muted: #475569;
   --border: #bfdbfe;
@@ -45,6 +48,7 @@
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-surface-inverse: var(--surface-inverse);
+  --color-surface-inverse-muted: var(--surface-inverse-muted);
   --color-foreground-inverse: var(--foreground-inverse);
   --color-muted: var(--muted);
   --color-border: var(--border);
@@ -54,10 +58,10 @@
   --shadow: var(--box-shadow);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair-display);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", sans-serif;
 }
