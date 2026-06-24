@@ -56,9 +56,23 @@
   --color-accent-muted: var(--accent-muted);
   --color-highlight: var(--highlight);
   --shadow: var(--box-shadow);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-playfair-display);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-neue-haas-display);
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold;
+  }
+  h1 {
+    @apply text-4xl sm:text-6xl;
+  }
+  h2 {
+    @apply text-3xl sm:text-4xl;
+  }
+  h3 {
+    @apply text-2xl sm:text-3xl;
+  }
 }
 
 body {

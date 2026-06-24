@@ -5,47 +5,47 @@ type MakeupCourse = Course;
 
 export const makeupCourses: MakeupCourse[] = [
   {
-    code: 'AB',
+    code: 'ab',
     name: 'Airbrush Makeup Workshop',
     shopifyProductId: '',
   },
   {
-    code: 'AM',
+    code: 'am',
     name: 'All-Access Program',
     shopifyProductId: '',
   },
   {
-    code: 'HS',
+    code: 'hs',
     name: 'Hairstyling Workshop',
     shopifyProductId: '',
   },
   {
-    code: 'MW',
+    code: 'mw',
     name: 'Pro Makeup Workshop',
     shopifyProductId: '',
   },
   {
-    code: 'MZ',
+    code: 'mz',
     name: 'Master Makeup Artistry',
     shopifyProductId: '16031932678447',
   },
   {
-    code: 'PF',
+    code: 'pf',
     name: 'Fashion Styling',
     shopifyProductId: '',
   },
   {
-    code: 'PW',
+    code: 'pw',
     name: 'Portfolio Development Workshop',
     shopifyProductId: '',
   },
   {
-    code: 'SF',
+    code: 'sf',
     name: 'Special Effects Workshop',
     shopifyProductId: '',
   },
   {
-    code: 'SK',
+    code: 'sk',
     name: 'Skincare',
     shopifyProductId: '16031945228591',
   },

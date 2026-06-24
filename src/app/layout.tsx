@@ -1,23 +1,8 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google'; // eslint-disable-line camelcase
 
 import './globals.css';
+import { inter, neueHaasDisplay } from '@/fonts';
 import type { LayoutComponent } from '@/serverComponent';
-
-const playfairDisplay = Playfair_Display({
-  variable: '--font-playfair-display',
-  subsets: [ 'latin' ],
-});
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: [ 'latin' ],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: [ 'latin' ],
-});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -26,7 +11,7 @@ export const metadata: Metadata = {
 
 const RootLayout: LayoutComponent = ({ children }) => {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} ${neueHaasDisplay.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );

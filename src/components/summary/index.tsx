@@ -46,11 +46,11 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
   });
 
   return (
-    <Card as="section" variant="panelDark" className="lg:sticky lg:top-6">
-      <div className="mb-5 border-b border-foreground-inverse/20 pb-5">
+    <Card as="section" className="lg:sticky lg:top-6">
+      <div className="mb-5 border-b border-foreground/20 pb-5">
         <SectionEyebrow tone="dark">Step 2</SectionEyebrow>
-        <h2 className="mt-1 font-serif text-3xl font-bold">Review</h2>
-        <p className="mt-2 leading-6 text-foreground-inverse/80">
+        <h2 className="mt-1">Review</h2>
+        <p className="mt-2 leading-6 text-foreground/80">
           Your checkout cart is created only when you press checkout.
         </p>
       </div>
@@ -65,9 +65,9 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
             const selectedPrice = selectedPrices.find(item => item.courseCode === course.code);
 
             return (
-              <Card as="div" variant="summary" key={course.code} className="flex items-start justify-between gap-4">
+              <Card as="div" variant="optionSelected" key={course.code} className="flex items-start justify-between gap-4">
                 <p className="text-sm font-bold leading-5">{course.name}</p>
-                <p className="shrink-0 text-sm font-bold text-foreground-inverse">
+                <p className="shrink-0 text-sm font-bold">
                   {selectedPrice
                     ? formatPrice(selectedPrice.price.amount, selectedPrice.price.currencyCode)
                     : 'Pending'

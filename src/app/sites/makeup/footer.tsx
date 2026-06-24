@@ -21,7 +21,7 @@ export const Footer: FC<Props> = ({ countryCode }) => {
     <footer className="bg-surface-inverse text-foreground-inverse">
       <Container>
         <div className="py-6">
-          <div className="flex flex-row gap-3">
+          <div className="flex flex-col gap-2 text-center md:flex-row md:gap-4 md:text-start">
             <span className="text-foreground-inverse/70">&copy; {new Date().getFullYear()} QC Makeup Academy</span>
             <span><a target="_blank" rel="noopener noreferrer" href={termsLink}>Privacy Policy</a></span>
             <span><a href={`tel:${tel}`}>{tel}</a></span>

@@ -18,7 +18,7 @@ const MakeupPage: PageComponent = async () => {
             <div className="absolute bottom-0 right-24 h-28 w-56 rotate-[-18deg] rounded-full bg-highlight/30 blur-xl" />
             <div className="relative max-w-2xl">
               <Pill className="mb-5">QC Makeup Academy</Pill>
-              <h1 className="max-w-3xl font-serif text-4xl font-bold sm:text-6xl">Build your course cart.</h1>
+              <h1>Build your course cart.</h1>
               <p className="mt-5 max-w-xl text-foreground-inverse/75 sm:text-xl font-light">Select the programs you want, review your total, and continue to Shopify checkout when everything looks right.</p>
             </div>
           </Card>

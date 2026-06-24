@@ -10,7 +10,6 @@ type CardVariant =
   | 'panelDark'
   | 'option'
   | 'optionSelected'
-  | 'summary'
   | 'empty';
 
 interface Props {
@@ -25,7 +24,6 @@ const variantClassNames: Record<CardVariant, string> = {
   panelDark: 'border border-surface-inverse bg-surface-inverse text-foreground-inverse shadow',
   option: 'border border-border bg-surface shadow transition duration-200',
   optionSelected: 'border border-accent bg-accent-muted shadow transition duration-200',
-  summary: 'bg-surface-inverse-muted px-4 py-3',
   empty: 'border border-dashed border-foreground-inverse/25 text-sm text-foreground-inverse/70',
 };
 
