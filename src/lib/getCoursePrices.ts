@@ -1,12 +1,12 @@
-import { unstable_cache } from "next/cache";
+import { unstable_cache } from 'next/cache'; // eslint-disable-line camelcase
 
-import type { Course } from "@/domain/course";
-import type { CoursePriceMap } from "@/domain/coursePrice";
-import { fetchPrice } from "./fetchPrice";
+import { fetchPrice } from './fetchPrice';
+import type { Course } from '@/domain/course';
+import type { CoursePriceMap } from '@/domain/coursePrice';
 
 const getCachedPrice = unstable_cache(fetchPrice, [], {
   revalidate: 60 * 15,
-  tags: ['shopify-prices']
+  tags: [ 'shopify-prices' ],
 });
 
 export const getCoursePrices = async (courses: Course[], countryCode: string): Promise<CoursePriceMap> => {

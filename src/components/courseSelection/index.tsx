@@ -1,11 +1,12 @@
 'use client';
 
-import type { FC } from "react";
-import { useCartState } from "../cartState";
-import type { Course } from "@/domain/course";
-import type { CoursePriceMap } from "@/domain/coursePrice";
-import { Checkbox } from "./checkbox";
-import type { CourseCode } from "@/domain/courseCode";
+import type { FC } from 'react';
+
+import { useCartState } from '../cartState';
+import { Checkbox } from './checkbox';
+import type { Course } from '@/domain/course';
+import type { CourseCode } from '@/domain/courseCode';
+import type { CoursePriceMap } from '@/domain/coursePrice';
 
 interface Props {
   courses: Course[];
@@ -13,7 +14,7 @@ interface Props {
 }
 
 export const CourseSelection: FC<Props> = ({ courses, prices }) => {
-  const [cartState, cartDispatch] = useCartState();
+  const [ cartState, cartDispatch ] = useCartState();
 
   const handleChange = (courseCode: CourseCode, checked: boolean): void => {
     if (!checked) {

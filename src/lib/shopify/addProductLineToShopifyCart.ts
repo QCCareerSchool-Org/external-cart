@@ -45,7 +45,7 @@ const addVariantLineToShopifyCart = async (cartId: string, variantId: string, co
   const variables = {
     cartId,
     country: countryCode.toUpperCase(),
-    lines: [{ merchandiseId: variantId, quantity: 1 }],
+    lines: [ { merchandiseId: variantId, quantity: 1 } ],
   };
 
   const { data, errors } = await shopifyClient.request<CartLinesAddResponse>(CART_LINES_ADD_MUTATION, { variables });

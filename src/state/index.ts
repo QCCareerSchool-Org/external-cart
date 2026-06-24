@@ -1,4 +1,4 @@
-import { isCourseCode, type CourseCode } from "@/domain/courseCode";
+import { type CourseCode, isCourseCode } from '@/domain/courseCode';
 
 export interface CartState {
   selected: CourseCode[];
@@ -21,7 +21,7 @@ export const cartReducer = (state: CartState, action: CartAction): CartState => 
       }
       return {
         ...state,
-        selected: [...state.selected, action.payload],
+        selected: [ ...state.selected, action.payload ],
       };
     case 'COURSE_REMOVED':
       return {
@@ -34,8 +34,8 @@ export const cartReducer = (state: CartState, action: CartAction): CartState => 
 };
 
 export const isCartState = (value: unknown): value is CartState => {
-  return typeof value === "object" && value !== null
-    && "selected" in value
+  return typeof value === 'object' && value !== null
+    && 'selected' in value
     && Array.isArray(value.selected)
     && value.selected.every(isCourseCode);
 };

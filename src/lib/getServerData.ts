@@ -1,4 +1,4 @@
-import { headers } from "next/headers";
+import { headers } from 'next/headers';
 
 interface ServerData {
   countryCode: string;
@@ -12,4 +12,4 @@ export const getServerData = async (): Promise<ServerData> => {
   const provinceCode = headerSet.get('X-Vercel-Country-State');
 
   return { countryCode, provinceCode, date: Date.now() };
-}
+};

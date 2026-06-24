@@ -1,12 +1,12 @@
 'use client';
 
-import type { ActionDispatch, FC, PropsWithChildren, } from "react";
-import { createContext, useContext, useEffect, useReducer, useRef } from "react";
+import type { ActionDispatch, FC, PropsWithChildren } from 'react';
+import { createContext, useContext, useEffect, useReducer, useRef } from 'react';
 
-import type { CartAction, CartState } from "@/state";
-import { cartReducer, initialCartState } from "@/state";
-import { createCookieCartStatePersistence } from "@/state/persistence/cookie";
-import { CartStatePersistence } from "@/state/persistence";
+import type { CartAction, CartState } from '@/state';
+import { cartReducer, initialCartState } from '@/state';
+import type { CartStatePersistence } from '@/state/persistence';
+import { createCookieCartStatePersistence } from '@/state/persistence/cookie';
 
 const defaultCartStatePersistence = createCookieCartStatePersistence();
 
@@ -18,7 +18,7 @@ interface Props {
 }
 
 export const CartStateProvider: FC<PropsWithChildren<Props>> = ({ persistence = defaultCartStatePersistence, children }) => {
-  const [state, dispatch] = useReducer(cartReducer, initialCartState);
+  const [ state, dispatch ] = useReducer(cartReducer, initialCartState);
   const firstRender = useRef(true);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export const CartStateProvider: FC<PropsWithChildren<Props>> = ({ persistence = 
     if (persistedState) {
       dispatch({ type: 'HYDRATE', payload: persistedState });
     }
-  }, [persistence]);
+  }, [ persistence ]);
 
   useEffect(() => {
     if (firstRender.current) {
@@ -35,7 +35,7 @@ export const CartStateProvider: FC<PropsWithChildren<Props>> = ({ persistence = 
     }
 
     persistence.save(state);
-  }, [persistence, state]);
+  }, [ persistence, state ]);
 
   return (
     <cartStateContext.Provider value={state}>
@@ -50,5 +50,5 @@ export const useCartState = (): [state: CartState, dispatch: ActionDispatch<[act
   const state = useContext(cartStateContext);
   const dispatch = useContext(cartDispatchContext);
 
-  return [state, dispatch];
+  return [ state, dispatch ];
 };

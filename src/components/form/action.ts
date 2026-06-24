@@ -1,15 +1,15 @@
 'use server';
 
-import { redirect } from "next/navigation";
-import type { Result } from "generic-result-type";
-import { failure, success } from "generic-result-type";
+import type { Result } from 'generic-result-type';
+import { failure, success } from 'generic-result-type';
+import { redirect } from 'next/navigation';
 
-import { getCourse } from "@/domain/course";
-import type { CourseCode } from "@/domain/courseCode";
-import { isCourseCodeArray } from "@/domain/courseCode";
-import { addProductLineToShopifyCart } from "@/lib/shopify/addProductLineToShopifyCart";
-import { createShopifyCart } from "@/lib/shopify/createShopifyCart";
-import type { State } from "./state";
+import type { State } from './state';
+import { getCourse } from '@/domain/course';
+import type { CourseCode } from '@/domain/courseCode';
+import { isCourseCodeArray } from '@/domain/courseCode';
+import { addProductLineToShopifyCart } from '@/lib/shopify/addProductLineToShopifyCart';
+import { createShopifyCart } from '@/lib/shopify/createShopifyCart';
 
 const getShopifyProductIds = (courseCodes: CourseCode[]): Result<string[]> => {
   const shopifyProductIds: string[] = [];
@@ -75,4 +75,4 @@ export const action = async (_state: State, formData: FormData): Promise<State> 
   }
 
   redirect(result.value);
-}
+};

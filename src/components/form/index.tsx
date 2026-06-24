@@ -1,25 +1,26 @@
 'use client';
 
-import type { FC, FormEventHandler, PropsWithChildren } from "react";
-import { useActionState } from "react";
-import { initialState } from "./state";
-import { action } from "./action";
-import { useCartState } from "../cartState";
+import type { FC, PropsWithChildren, SubmitEventHandler } from 'react';
+import { useActionState } from 'react';
+
+import { action } from './action';
+import { initialState } from './state';
+import { useCartState } from '../cartState';
 
 interface Props {
   countryCode: string;
 }
 
-const preventFormReset: FormEventHandler<HTMLFormElement> = e => {
+const handleReset: SubmitEventHandler<HTMLFormElement> = e => {
   e.preventDefault();
 };
 
 export const Form: FC<PropsWithChildren<Props>> = ({ countryCode, children }) => {
-  const [cartState] = useCartState();
-  const [state, dispatch, isPending] = useActionState(action, initialState);
+  const [ cartState ] = useCartState();
+  const [ state, dispatch, isPending ] = useActionState(action, initialState);
 
   return (
-    <form action={dispatch} onReset={preventFormReset} className="space-y-6">
+    <form action={dispatch} onReset={handleReset} className="space-y-6">
       <input type="hidden" name="countryCode" value={countryCode} />
       {children}
       <div className="rounded-[1.75rem] border border-[#d8c4a5] bg-[#fffaf1]/90 p-4 shadow-[0_16px_50px_rgba(69,43,24,0.10)] sm:flex sm:items-center sm:justify-between sm:gap-5">

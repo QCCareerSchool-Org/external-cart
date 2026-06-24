@@ -1,14 +1,14 @@
 'use client';
 
-import Big from "big.js";
-import { FC } from "react";
+import Big from 'big.js';
+import type { FC } from 'react';
 
-import type { Course } from "@/domain/course";
-import type { CoursePriceMap } from "@/domain/coursePrice";
-import type { CourseCode } from "@/domain/courseCode";
-import type { CurrencyCode } from "@/domain/currencyCode";
-import { deserializePrice, type Price } from "@/domain/price";
-import { useCartState } from "../cartState";
+import { useCartState } from '../cartState';
+import type { Course } from '@/domain/course';
+import type { CourseCode } from '@/domain/courseCode';
+import type { CoursePriceMap } from '@/domain/coursePrice';
+import type { CurrencyCode } from '@/domain/currencyCode';
+import { deserializePrice, type Price } from '@/domain/price';
 
 interface Props {
   courses: Course[];
@@ -25,11 +25,11 @@ interface SelectedPrice {
 }
 
 export const Summary: FC<Props> = ({ courses, prices }) => {
-  const [cartState] = useCartState();
+  const [ cartState ] = useCartState();
 
   const selectedPrices = cartState.selected.flatMap<SelectedPrice>(courseCode => {
     return prices[courseCode]
-      ? [{ courseCode, price: deserializePrice(prices[courseCode]) }]
+      ? [ { courseCode, price: deserializePrice(prices[courseCode]) } ]
       : [];
   });
 
@@ -40,7 +40,7 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
 
   const selectedCourses = cartState.selected.flatMap(courseCode => {
     const course = courses.find(c => c.code === courseCode);
-    return course ? [course] : [];
+    return course ? [ course ] : [];
   });
   const selectedWithoutPrices = cartState.selected.filter(courseCode => !prices[courseCode]);
 
@@ -86,7 +86,7 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
         {Object.entries(totals).length === 0 ? (
           <p className="text-sm text-[#e6c9aa]">Totals will appear here.</p>
         ) : (
-          Object.entries(totals).map(([currencyCode, total]) => (
+          Object.entries(totals).map(([ currencyCode, total ]) => (
             <div key={currencyCode} className="flex items-end justify-between gap-4">
               <span className="text-sm font-bold uppercase tracking-[0.18em] text-[#f6c44f]">Total</span>
               <span className="font-serif text-3xl font-black tracking-[-0.04em]">

@@ -1,5 +1,6 @@
-import Big from "big.js";
-import { CurrencyCode } from "./currencyCode";
+import Big from 'big.js';
+
+import type { CurrencyCode } from './currencyCode';
 
 export interface Price {
   currencyCode: CurrencyCode;

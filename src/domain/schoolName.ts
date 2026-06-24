@@ -4,4 +4,4 @@ export type SchoolName = typeof schoolNames[number];
 
 export const isSchoolName = (value: unknown): value is SchoolName => {
   return typeof value === 'string' && schoolNames.includes(value as SchoolName);
-}
+};

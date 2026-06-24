@@ -1,4 +1,4 @@
-import { SchoolSlug } from '@/domain/schoolSlug';
+import type { SchoolSlug } from '@/domain/schoolSlug';
 
 interface Site { slug: SchoolSlug; domains: (string | RegExp)[]; path: string }
 

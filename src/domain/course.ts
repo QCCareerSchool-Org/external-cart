@@ -1,6 +1,6 @@
-import type { CourseCode } from "./courseCode";
-import { getMakeupCourse } from "./makeup/course";
-import { isMakeupCourseCode } from "./makeup/courseCode";
+import type { CourseCode } from './courseCode';
+import { getMakeupCourse } from './makeup/course';
+import { isMakeupCourseCode } from './makeup/courseCode';
 
 export interface Course<T extends CourseCode = CourseCode> {
   code: T;

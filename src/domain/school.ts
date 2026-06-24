@@ -1,5 +1,5 @@
-import type { SchoolName } from "./schoolName";
-import type { SchoolSlug } from "./schoolSlug";
+import type { SchoolName } from './schoolName';
+import type { SchoolSlug } from './schoolSlug';
 
 export interface School {
   slug: SchoolSlug;
@@ -21,7 +21,7 @@ export const schools: School[] = [
   {
     slug: 'makeup',
     name: 'QC Makeup Academy',
-    shopifyStoreId: ''
+    shopifyStoreId: '',
   },
   {
     slug: 'pet',
@@ -42,15 +42,14 @@ export const schools: School[] = [
     slug: 'ppa',
     name: 'Paw Parent Academy',
     shopifyStoreId: undefined,
-  }
+  },
 ];
-
 
 export const getSchool = (slug: SchoolSlug): School => {
   const school = schools.find(s => s.slug === slug);
   if (!school) {
     throw Error('School not found');
   }
-  
+
   return school;
-}
+};

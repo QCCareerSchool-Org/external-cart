@@ -1,14 +1,14 @@
-import type { CartState } from "..";
-import { isCartState } from "..";
-import { readCookie, writeCookie } from "@/lib/cookie";
-import { CartStatePersistence } from ".";
+import type { CartStatePersistence } from '.';
+import type { CartState } from '..';
+import { isCartState } from '..';
+import { readCookie, writeCookie } from '@/lib/cookie';
 
 interface CookieCartStatePersistenceOptions {
   cookieName?: string;
   maxAgeSeconds?: number;
 }
 
-const defaultCookieName = "cart_state";
+const defaultCookieName = 'cart_state';
 const defaultMaxAgeSeconds = 60 * 60 * 24 * 30;
 
 export const createCookieCartStatePersistence = (options: CookieCartStatePersistenceOptions = {}): CartStatePersistence => {

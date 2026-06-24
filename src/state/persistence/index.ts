@@ -1,4 +1,4 @@
-import type { CartState } from "..";
+import type { CartState } from '..';
 
 export interface CartStatePersistence {
   load: () => CartState | null;

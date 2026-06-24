@@ -1,6 +1,6 @@
-import type { SerializedPrice } from "@/domain/price";
-import { getProduct } from "./shopify/getProduct";
-import { isCurrencyCode } from "@/domain/currencyCode";
+import { getProduct } from './shopify/getProduct';
+import { isCurrencyCode } from '@/domain/currencyCode';
+import type { SerializedPrice } from '@/domain/price';
 
 export const fetchPrice = async (shopifyProductId: string, countryCode: string): Promise<SerializedPrice | undefined> => {
   if (!shopifyProductId) {
