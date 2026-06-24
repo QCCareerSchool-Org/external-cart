@@ -1,5 +1,5 @@
 import type { CartState } from "./state";
-import { isCartState} from "./state";
+import { isCartState } from "./state";
 import { readCookie, writeCookie } from "@/lib/cookie";
 
 export interface CartStatePersistence {
@@ -12,7 +12,7 @@ interface CookieCartStatePersistenceOptions {
   maxAgeSeconds?: number;
 }
 
-const defaultCookieName = "shopify_cart";
+const defaultCookieName = "cart_state";
 const defaultMaxAgeSeconds = 60 * 60 * 24 * 30;
 
 export const createCookieCartStatePersistence = (options: CookieCartStatePersistenceOptions = {}): CartStatePersistence => {
@@ -32,7 +32,7 @@ export const createCookieCartStatePersistence = (options: CookieCartStatePersist
       if (!isCartState(cartState)) {
         return null;
       }
-      return cartState
+      return cartState;
     } catch {
       return null;
     }
@@ -40,7 +40,7 @@ export const createCookieCartStatePersistence = (options: CookieCartStatePersist
 
   const save = (state: CartState): void => {
     writeCookie(cookieName, encodeURIComponent(JSON.stringify(state)), maxAgeSeconds);
-  }
+  };
 
   return { load, save };
 };

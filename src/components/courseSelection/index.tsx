@@ -1,33 +1,58 @@
 'use client';
 
-import { FC } from "react";
+import type { FC } from "react";
+import { useState } from "react";
 import { useCartState } from "../cartState";
-import { Course } from "@/domain/course";
+import type { Course } from "@/domain/course";
 import { Checkbox } from "./checkbox";
-import { CourseCode } from "@/domain/courseCode";
+import type { CourseCode } from "@/domain/courseCode";
+import { selectCourse } from "./action";
 
 interface Props {
   courses: Course[];
+  countryCode: string;
 }
 
-export const CourseSelection: FC<Props> = ({ courses }) => {
-  const [cartState, cartDispatch ] = useCartState();
+export const CourseSelection: FC<Props> = ({ courses, countryCode }) => {
+  const [cartState, cartDispatch] = useCartState();
+  const [pendingCourseCode, setPendingCourseCode] = useState<CourseCode | null>(null);
+
+  const persistSelectedCourse = async (courseCode: CourseCode): Promise<void> => {
+    setPendingCourseCode(courseCode);
+    try {
+      const selectedCourseCodes = cartState.selected.includes(courseCode)
+        ? cartState.selected
+        : [...cartState.selected, courseCode];
+      const result = await selectCourse(courseCode, selectedCourseCodes, countryCode);
+      if (result.success) {
+        cartDispatch({ type: 'COURSE_ADDED', payload: courseCode });
+      } else {
+        console.error(result.message);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setPendingCourseCode(null);
+    }
+  };
 
   const handleChange = (courseCode: CourseCode, checked: boolean): void => {
-    if (checked) {
-      cartDispatch({ type: 'COURSE_ADDED', payload: courseCode });
-    } else {
+    if (!checked) {
       cartDispatch({ type: 'COURSE_REMOVED', payload: courseCode });
-    }    
-  }
+      return;
+    }
+
+    void persistSelectedCourse(courseCode);
+  };
 
   return (
     <section>
       {courses.map(c => (
         <Checkbox
-          key={c.shopifyProductId}
+          key={c.code}
           course={c}
           checked={cartState.selected.includes(c.code)}
+          disabled={pendingCourseCode !== null}
           onChange={handleChange}
         />
       ))}

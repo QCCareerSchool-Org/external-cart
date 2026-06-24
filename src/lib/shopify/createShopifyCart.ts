@@ -1,10 +1,10 @@
 import type { Result } from 'generic-result-type';
 import { failure, success } from 'generic-result-type';
 
-import { shopifyClient } from '.';
+import { ShopifyCart, shopifyClient } from '.';
 
 const CART_CREATE_MUTATION = `
-  mutation createCart($input: CartInput!, $country: CountryCode)
+  mutation createShopifyCart($input: CartInput!, $country: CountryCode)
   @inContext(country: $country) {
     cartCreate(input: $input) {
       cart {
@@ -18,15 +18,9 @@ const CART_CREATE_MUTATION = `
     }
   }
 `;
-
-export interface Cart {
-  id: string;
-  checkoutUrl: string;
-}
-
 interface CartCreateResponse {
   cartCreate: {
-    cart: Cart | null;
+    cart: ShopifyCart | null;
     userErrors: {
       field: string[] | null;
       message: string;
@@ -34,7 +28,7 @@ interface CartCreateResponse {
   };
 }
 
-export const createCart = async (countryCode: string): Promise<Result<Cart>> => {
+export const createShopifyCart = async (countryCode: string): Promise<Result<ShopifyCart>> => {
   const normalizedCountryCode = countryCode.toUpperCase();
   const cartVariables = {
     country: normalizedCountryCode,

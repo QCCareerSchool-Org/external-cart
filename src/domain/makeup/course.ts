@@ -27,7 +27,7 @@ export const makeupCourses: MakeupCourse[] = [
   {
     code: 'MZ',
     name: 'Master Makeup Artistry',
-    shopifyProductId: ''
+    shopifyProductId: '16031932678447'
   },
   {
     code: 'PF',
@@ -47,7 +47,7 @@ export const makeupCourses: MakeupCourse[] = [
   {
     code: 'SK',
     name: 'Skincare',
-    shopifyProductId: ''
+    shopifyProductId: '16031945228591'
   },
 ];
 

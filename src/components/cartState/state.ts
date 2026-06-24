@@ -2,18 +2,15 @@ import { isCourseCode, type CourseCode } from "@/domain/courseCode";
 
 export interface CartState {
   selected: CourseCode[];
-  shopifyCartId: string | undefined;
 }
 
 export const initialCartState: CartState = {
   selected: [],
-  shopifyCartId: undefined,
 };
 
 export type CartAction =
   | { type: 'COURSE_ADDED'; payload: CourseCode }
   | { type: 'COURSE_REMOVED'; payload: CourseCode }
-  | { type: 'CART_CREATED'; payload: string }
   | { type: 'HYDRATE'; payload: CartState };
 
 export const cartReducer = (state: CartState, action: CartAction): CartState => {
@@ -31,8 +28,6 @@ export const cartReducer = (state: CartState, action: CartAction): CartState => 
         ...state,
         selected: state.selected.filter(courseCode => courseCode !== action.payload),
       };
-    case 'CART_CREATED':
-      return { ...state, shopifyCartId: action.payload };
     case 'HYDRATE':
       return action.payload;
   }
@@ -40,6 +35,7 @@ export const cartReducer = (state: CartState, action: CartAction): CartState => 
 
 export const isCartState = (value: unknown): value is CartState => {
   return typeof value === "object" && value !== null
-  && "selected" in value && Array.isArray(value.selected) && value.selected.every(isCourseCode)
-  && (('shopifyCartId' in value && typeof value.shopifyCartId === 'string') || (!('shopifyCartId' in value)));
+    && "selected" in value
+    && Array.isArray(value.selected)
+    && value.selected.every(isCourseCode);
 };
