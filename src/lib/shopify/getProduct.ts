@@ -1,7 +1,7 @@
 import type { Result } from 'generic-result-type';
 import { failure, success } from 'generic-result-type';
 
-import { shopifyClient } from '.';
+import { shopifyClient } from './client';
 
 const PRODUCT_BY_ID_QUERY = `
   query getProductPriceById($id: ID!, $country: CountryCode)
@@ -78,7 +78,7 @@ export interface Product {
 
 interface Response { product: Product }
 
-export const fetchProduct = async (shopifyProductId: string, countryCode: string): Promise<Result<Product>> => {
+export const getProduct = async (shopifyProductId: string, countryCode: string): Promise<Result<Product>> => {
   const variables = {
     id: `gid://shopify/Product/${shopifyProductId}`,
     country: countryCode,

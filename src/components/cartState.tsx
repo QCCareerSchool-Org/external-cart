@@ -3,10 +3,10 @@
 import type { ActionDispatch, FC, PropsWithChildren, } from "react";
 import { createContext, useContext, useEffect, useReducer, useRef } from "react";
 
-import type { CartStatePersistence } from "./persistence";
-import { createCookieCartStatePersistence } from "./persistence";
-import type { CartAction, CartState } from "./state";
-import { cartReducer, initialCartState } from "./state";
+import type { CartAction, CartState } from "@/state";
+import { cartReducer, initialCartState } from "@/state";
+import { createCookieCartStatePersistence } from "@/state/persistence/cookie";
+import { CartStatePersistence } from "@/state/persistence";
 
 const defaultCartStatePersistence = createCookieCartStatePersistence();
 
@@ -52,7 +52,3 @@ export const useCartState = (): [state: CartState, dispatch: ActionDispatch<[act
 
   return [state, dispatch];
 };
-
-export type { CartAction, CartState } from "./state";
-export type { CartStatePersistence } from "./persistence";
-export { createCookieCartStatePersistence } from "./persistence";

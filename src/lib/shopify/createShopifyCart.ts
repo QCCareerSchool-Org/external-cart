@@ -1,7 +1,7 @@
 import type { Result } from 'generic-result-type';
 import { failure, success } from 'generic-result-type';
 
-import { ShopifyCart, shopifyClient } from '.';
+import { shopifyClient } from './client';
 
 const CART_CREATE_MUTATION = `
   mutation createShopifyCart($input: CartInput!, $country: CountryCode)
@@ -18,9 +18,18 @@ const CART_CREATE_MUTATION = `
     }
   }
 `;
+
+interface ShopifyCart {
+  id: string;
+  checkoutUrl: string;
+}
+
 interface CartCreateResponse {
   cartCreate: {
-    cart: ShopifyCart | null;
+    cart: {
+      id: string;
+      checkoutUrl: string;
+    } | null;
     userErrors: {
       field: string[] | null;
       message: string;

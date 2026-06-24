@@ -8,17 +8,14 @@ const MakeupPage: PageComponent = async () => {
   const { countryCode, provinceCode, date } = await getServerData();
 
   return (
-    <>
-      <h1>Makeup</h1>
-      <Cart
-        school={getSchool('makeup')}
-        courses={makeupCourses}
-        successPage="https://www.qcmakeupacademy.com/welcome-to-the-school"
-        countryCode={countryCode}
-        provinceCode={provinceCode}
-        date={date}
-      />
-    </>
+    <Cart
+      school={getSchool('makeup')}
+      courses={makeupCourses}
+      successPage="https://www.qcmakeupacademy.com/welcome-to-the-school"
+      countryCode={countryCode}
+      provinceCode={provinceCode}
+      date={date}
+    />
   );
 };
 

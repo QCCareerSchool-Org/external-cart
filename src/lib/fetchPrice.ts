@@ -1,5 +1,5 @@
 import type { SerializedPrice } from "@/domain/price";
-import { fetchProduct } from "./shopify/fetchProduct";
+import { getProduct } from "./shopify/getProduct";
 import { isCurrencyCode } from "@/domain/currencyCode";
 
 export const fetchPrice = async (shopifyProductId: string, countryCode: string): Promise<SerializedPrice | undefined> => {
@@ -7,7 +7,7 @@ export const fetchPrice = async (shopifyProductId: string, countryCode: string):
     return;
   }
 
-  const productResult = await fetchProduct(shopifyProductId, countryCode);
+  const productResult = await getProduct(shopifyProductId, countryCode);
   if (!productResult.success) {
     return;
   }

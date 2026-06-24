@@ -5,10 +5,10 @@ import type { Result } from "generic-result-type";
 import { failure, success } from "generic-result-type";
 
 import { getCourse } from "@/domain/course";
-import { isCourseCode, type CourseCode } from "@/domain/courseCode";
+import type { CourseCode } from "@/domain/courseCode";
+import { isCourseCodeArray } from "@/domain/courseCode";
 import { addProductLineToShopifyCart } from "@/lib/shopify/addProductLineToShopifyCart";
 import { createShopifyCart } from "@/lib/shopify/createShopifyCart";
-import type { ShopifyCart } from "@/lib/shopify";
 import type { State } from "./state";
 
 const getShopifyProductIds = (courseCodes: CourseCode[]): Result<string[]> => {
@@ -26,7 +26,7 @@ const getShopifyProductIds = (courseCodes: CourseCode[]): Result<string[]> => {
   return success(shopifyProductIds);
 };
 
-const createCheckout = async (countryCode: string, shopifyProductIds: string[]): Promise<Result<ShopifyCart>> => {
+const createCheckout = async (countryCode: string, shopifyProductIds: string[]): Promise<Result<string>> => {
   try {
     const cartResult = await createShopifyCart(countryCode);
     if (!cartResult.success) {
@@ -42,7 +42,7 @@ const createCheckout = async (countryCode: string, shopifyProductIds: string[]):
       }
     }
 
-    return success(cartResult.value);
+    return success(cartResult.value.checkoutUrl);
   } catch (error) {
     console.error(error);
     return failure(Error('Could not create Shopify checkout'));
@@ -74,9 +74,5 @@ export const action = async (_state: State, formData: FormData): Promise<State> 
     return { error: result.error.message };
   }
 
-  redirect(result.value.checkoutUrl);
-}
-
-const isCourseCodeArray = (value: unknown[]): value is CourseCode[] => {
-  return Array.isArray(value) && value.every(isCourseCode);
+  redirect(result.value);
 }

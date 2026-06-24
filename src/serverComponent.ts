@@ -20,4 +20,4 @@ export type LayoutComponent<RouteParams extends Record<string, string> = EmptyRe
 
 export type GenerateMetadata<RouteParams extends Record<string, string> = EmptyRecord> = (props: PageProps<RouteParams>, parent: ResolvingMetadata) => Promise<Metadata>;
 
-export type RouteHandler<T = Record<string, string>> = (request: NextRequest, context: { params: T }) => Promise<Response | NextResponse> | Response | NextResponse;
+export type RouteHandler<T = Record<string, string>> = (request: NextRequest, context: { params: Promise<T> }) => Promise<Response | NextResponse> | Response | NextResponse;

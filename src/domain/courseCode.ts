@@ -10,3 +10,7 @@ export type CourseCode =
 export const isCourseCode = (value: unknown): value is CourseCode => {
   return isMakeupCourseCode(value) || isDesignCourseCode(value);
 }
+
+export const isCourseCodeArray = (value: unknown[]): value is CourseCode[] => {
+  return Array.isArray(value) && value.every(isCourseCode);
+}

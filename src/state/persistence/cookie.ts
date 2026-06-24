@@ -1,11 +1,7 @@
-import type { CartState } from "./state";
-import { isCartState } from "./state";
+import type { CartState } from "..";
+import { isCartState } from "..";
 import { readCookie, writeCookie } from "@/lib/cookie";
-
-export interface CartStatePersistence {
-  load: () => CartState | null;
-  save: (state: CartState) => void;
-}
+import { CartStatePersistence } from ".";
 
 interface CookieCartStatePersistenceOptions {
   cookieName?: string;
