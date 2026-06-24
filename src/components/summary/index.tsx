@@ -5,6 +5,7 @@ import type { FC } from 'react';
 
 import { Card } from '../card';
 import { useCartState } from '../cartState';
+import { SectionEyebrow } from '../sectionEyebrow';
 import type { Course } from '@/domain/course';
 import type { CourseCode } from '@/domain/courseCode';
 import type { CoursePriceMap } from '@/domain/coursePrice';
@@ -47,10 +48,10 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
 
   return (
     <Card as="section" variant="panelDark" className="lg:sticky lg:top-6">
-      <div className="mb-5 border-b border-[#fff6e8]/20 pb-5">
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#f6c44f]">Step 2</p>
+      <div className="mb-5 border-b border-foreground-inverse/20 pb-5">
+        <SectionEyebrow tone="dark">Step 2</SectionEyebrow>
         <h2 className="mt-1 font-serif text-3xl font-black tracking-[-0.04em]">Review</h2>
-        <p className="mt-2 text-sm leading-6 text-[#e6c9aa]">
+        <p className="mt-2 text-sm leading-6 text-foreground-inverse/70">
           Your checkout cart is created only when you press checkout.
         </p>
       </div>
@@ -67,10 +68,10 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
             return (
               <Card as="div" variant="optionDark" key={course.code} className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-[#f6c44f]">{course.code}</p>
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-highlight">{course.code}</p>
                   <p className="mt-1 text-sm font-bold leading-5">{course.name}</p>
                 </div>
-                <p className="shrink-0 text-sm font-black text-[#fff6e8]">
+                <p className="shrink-0 text-sm font-black text-foreground-inverse">
                   {selectedPrice
                     ? formatPrice(selectedPrice.price.amount, selectedPrice.price.currencyCode)
                     : 'Pending'}
@@ -81,13 +82,13 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
         </div>
       )}
 
-      <div className="mt-5 border-t border-[#fff6e8]/20 pt-5">
+      <div className="mt-5 border-t border-foreground-inverse/20 pt-5">
         {Object.entries(totals).length === 0 ? (
-          <p className="text-sm text-[#e6c9aa]">Totals will appear here.</p>
+          <p className="text-sm text-foreground-inverse/70">Totals will appear here.</p>
         ) : (
           Object.entries(totals).map(([ currencyCode, total ]) => (
             <div key={currencyCode} className="flex items-end justify-between gap-4">
-              <span className="text-sm font-bold uppercase tracking-[0.18em] text-[#f6c44f]">Total</span>
+              <span className="text-sm font-bold uppercase tracking-[0.18em] text-highlight">Total</span>
               <span className="font-serif text-3xl font-black tracking-[-0.04em]">
                 {formatPrice(total, currencyCode as CurrencyCode)}
               </span>
@@ -97,7 +98,7 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
       </div>
 
       {selectedWithoutPrices.length > 0 && (
-        <p className="mt-4 rounded-2xl bg-[#e36537]/20 p-3 text-sm font-semibold text-[#ffd9c9]">
+        <p className="mt-4 rounded-2xl bg-accent/20 p-3 text-sm font-semibold text-accent-muted">
           Price unavailable for: {selectedWithoutPrices.join(', ')}
         </p>
       )}

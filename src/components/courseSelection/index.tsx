@@ -3,8 +3,9 @@
 import type { FC } from 'react';
 
 import { Card } from '../card';
-import { useCartState } from '../cartState';
 import { Checkbox } from './checkbox';
+import { useCartState } from '../cartState';
+import { SectionEyebrow } from '../sectionEyebrow';
 import type { Course } from '@/domain/course';
 import type { CourseCode } from '@/domain/courseCode';
 import type { CoursePriceMap } from '@/domain/coursePrice';
@@ -30,10 +31,10 @@ export const CourseSelection: FC<Props> = ({ courses, prices }) => {
     <Card as="section" variant="panel">
       <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#a84d2a]">Step 1</p>
-          <h2 className="font-serif text-3xl font-black tracking-[-0.04em] text-[#2a1a11]">Choose your courses</h2>
+          <SectionEyebrow tone="light">Step 1</SectionEyebrow>
+          <h2 className="font-serif text-3xl font-black tracking-[-0.04em] text-foreground">Choose your courses</h2>
         </div>
-        <p className="text-sm font-semibold text-[#7a6249]">{cartState.selected.length} selected</p>
+        <p className="text-sm font-semibold text-muted">{cartState.selected.length} selected</p>
       </div>
 
       <div className="grid gap-3">

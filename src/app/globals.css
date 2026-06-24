@@ -1,13 +1,57 @@
 @import "tailwindcss";
 
 :root {
+  --background: #ffffff;
+  --foreground: #111827;
+  --surface: #ffffff;
+  --surface-inverse: #111827;
+  --foreground-inverse: #f9fafb;
+  --muted: #6b7280;
+  --border: #d1d5db;
+  --accent: #2563eb;
+  --accent-muted: #dbeafe;
+  --highlight: #0ea5e9;
+  --box-shadow: 0 0.125rem 0.75rem rgb(0 0 0 / 0.15);
+}
+
+.makeup-theme {
   --background: #f4eadb;
   --foreground: #21160f;
+  --surface: #fffaf1;
+  --surface-inverse: #2a1a11;
+  --foreground-inverse: #fff6e8;
+  --muted: #7a6249;
+  --border: #d8c4a5;
+  --accent: #e36537;
+  --accent-muted: #fff2df;
+  --highlight: #f6c44f;
+}
+
+.design-theme {
+  --background: #eff6ff;
+  --foreground: #0f172a;
+  --surface: #ffffff;
+  --surface-inverse: #0f2a4a;
+  --foreground-inverse: #f8fafc;
+  --muted: #475569;
+  --border: #bfdbfe;
+  --accent: #2563eb;
+  --accent-muted: #dbeafe;
+  --highlight: #38bdf8;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-foreground-inverse: var(--foreground-inverse);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-muted: var(--accent-muted);
+  --color-highlight: var(--highlight);
+  --shadow: var(--box-shadow);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

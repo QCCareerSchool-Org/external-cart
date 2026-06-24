@@ -21,14 +21,14 @@ interface Props {
 }
 
 const variantClassNames: Record<CardVariant, string> = {
-  hero: 'overflow-hidden bg-[#28180f] text-[#fff6e8] shadow-[0_24px_80px_rgba(50,31,18,0.22)]',
-  panel: 'border border-[#d8c4a5] bg-[#fffaf1]/85 shadow-[0_18px_60px_rgba(69,43,24,0.12)] backdrop-blur',
-  panelDark: 'border border-[#2a1a11] bg-[#2a1a11] text-[#fff6e8] shadow-[0_20px_70px_rgba(42,26,17,0.24)]',
-  cta: 'border border-[#d8c4a5] bg-[#fffaf1]/90 shadow-[0_16px_50px_rgba(69,43,24,0.10)]',
-  option: 'border border-[#dfccb0] bg-white/80 shadow-[0_10px_26px_rgba(71,44,25,0.08)] transition duration-200',
-  optionSelected: 'border border-[#e36537] bg-[#fff2df] shadow-[0_16px_34px_rgba(227,101,55,0.18)] transition duration-200',
-  optionDark: 'bg-[#fff6e8]/10',
-  empty: 'border border-dashed border-[#fff6e8]/25 text-sm text-[#e6c9aa]',
+  hero: 'overflow-hidden bg-surface-inverse text-foreground-inverse',
+  panel: 'border border-border bg-surface',
+  panelDark: 'border border-surface-inverse bg-surface-inverse text-foreground-inverse shadow',
+  cta: 'border border-border bg-surface shadow',
+  option: 'border border-border bg-surface shadow transition duration-200',
+  optionSelected: 'border border-accent bg-accent-muted shadow transition duration-200',
+  optionDark: 'bg-foreground-inverse/10 px-4 py-3',
+  empty: 'border border-dashed border-foreground-inverse/25 text-sm text-foreground-inverse/70',
 };
 
 export const Card: FC<PropsWithChildren<Props>> = ({ as = 'div', className, children, variant }) => {

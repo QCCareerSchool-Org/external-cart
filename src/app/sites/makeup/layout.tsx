@@ -35,9 +35,11 @@ const MakeupLayout: LayoutComponent = async ({ children }) => {
       <Facebook id="1531219047676834" />
       <Tiktok id="CJ6H6NBC77UC1837TT70" />
       <Bing id="5105215" />
-      <Header countryCode={countryCode} />
-      {children}
-      <Footer countryCode={countryCode} />
+      <div className="makeup-theme min-h-screen bg-background text-foreground">
+        <Header countryCode={countryCode} />
+        {children}
+        <Footer countryCode={countryCode} />
+      </div>
       <Script src="/makeup/chat.js" />
     </>
   );
