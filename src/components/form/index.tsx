@@ -1,31 +1,29 @@
 'use client';
 
-import { Course } from "@/domain/course";
-import { School } from "@/domain/school";
-import { FC, PropsWithChildren, useActionState } from "react";
+import type { FC, FormEventHandler, PropsWithChildren, SubmitEventHandler } from "react";
+import { useActionState } from "react";
 import { initialState } from "./state";
-import { action } from "./action";
+import { checkout } from "./action";
 import { useCartState } from "../cartState";
 
 interface Props {
-  school: School;
-  courses: Course[]
-  checkoutUrl?: string;
+  countryCode: string;
 }
 
-export const Form: FC<PropsWithChildren<Props>> = ({ school, courses, checkoutUrl, children }) => {
-  const [ cartState ] = useCartState();
-  const [state, dispatch, isPending] = useActionState(action, initialState);
+const preventFormReset: SubmitEventHandler<HTMLFormElement> = e => {
+  e.preventDefault();
+};
+
+export const Form: FC<PropsWithChildren<Props>> = ({ countryCode, children }) => {
+  const [cartState] = useCartState();
+  const [state, dispatch, isPending] = useActionState(checkout, initialState);
 
   return (
-    <form action={dispatch}>
-      <input type="hidden" name="checkoutUrl" value={checkoutUrl} />
-      {cartState.selected.map(c => (
-        <input key={c} type="hidden" name="courseCode" value={c} />
-      ))}
+    <form action={dispatch} onReset={preventFormReset}>
+      <input type="hidden" name="countryCode" value={countryCode} />
       {children}
-      <button type="submit" disabled={!checkoutUrl || isPending}>Checkout</button>
+      {state.error && <p>{state.error}</p>}
+      <button type="submit" disabled={cartState.selected.length === 0 || isPending}>Checkout</button>
     </form>
-  )
-
-}
+  );
+};

@@ -1,7 +1,6 @@
 export interface State {
-  step: number;
+  error?: string;
 }
 
 export const initialState: State = {
-  step: 0,
-}
+};
