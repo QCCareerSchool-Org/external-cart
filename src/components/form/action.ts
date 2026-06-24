@@ -1,6 +1,5 @@
 'use server';
 
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import type { Result } from "generic-result-type";
 import { failure, success } from "generic-result-type";
@@ -11,22 +10,6 @@ import { addProductLineToShopifyCart } from "@/lib/shopify/addProductLineToShopi
 import { createShopifyCart } from "@/lib/shopify/createShopifyCart";
 import type { ShopifyCart } from "@/lib/shopify";
 import type { State } from "./state";
-
-const shopifyCartCookieName = "shopify_cart";
-const shopifyCartCookieMaxAge = 60 * 60 * 24 * 30;
-
-const saveShopifyCart = async (cart: ShopifyCart): Promise<void> => {
-  const cookieStore = await cookies();
-  cookieStore.set({
-    name: shopifyCartCookieName,
-    value: JSON.stringify(cart),
-    httpOnly: true,
-    maxAge: shopifyCartCookieMaxAge,
-    path: '/',
-    sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production',
-  });
-};
 
 const getShopifyProductIds = (courseCodes: CourseCode[]): Result<string[]> => {
   const shopifyProductIds: string[] = [];
@@ -66,7 +49,7 @@ const createCheckout = async (countryCode: string, shopifyProductIds: string[]):
   }
 };
 
-export async function checkout(_state: State, formData: FormData): Promise<State> {
+export const action = async (_state: State, formData: FormData): Promise<State> => {
   const countryCode = formData.get('countryCode');
   if (typeof countryCode !== 'string') {
     return { error: 'Could not determine checkout country' };
@@ -90,8 +73,6 @@ export async function checkout(_state: State, formData: FormData): Promise<State
   if (!result.success) {
     return { error: result.error.message };
   }
-
-  await saveShopifyCart(result.value);
 
   redirect(result.value.checkoutUrl);
 }

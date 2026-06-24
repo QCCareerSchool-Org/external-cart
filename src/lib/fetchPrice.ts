@@ -1,12 +1,13 @@
-import Big from 'big.js';
-
-import { Price } from "@/domain/price";
+import type { SerializedPrice } from "@/domain/price";
 import { fetchProduct } from "./shopify/fetchProduct";
 import { isCurrencyCode } from "@/domain/currencyCode";
-import { Course } from '@/domain/course';
 
-export const fetchPrice = async (course: Course, countryCode: string): Promise<Price | undefined> => {
-  const productResult = await fetchProduct(course.shopifyProductId, countryCode);
+export const fetchPrice = async (shopifyProductId: string, countryCode: string): Promise<SerializedPrice | undefined> => {
+  if (!shopifyProductId) {
+    return;
+  }
+
+  const productResult = await fetchProduct(shopifyProductId, countryCode);
   if (!productResult.success) {
     return;
   }
@@ -21,8 +22,8 @@ export const fetchPrice = async (course: Course, countryCode: string): Promise<P
 
   return {
     currencyCode,
-    amount: Big(variant.price.amount),
-    original: variant.compareAtPrice === null ? undefined : Big(variant.compareAtPrice.amount),
+    amount: variant.price.amount,
+    original: variant.compareAtPrice === null ? undefined : variant.compareAtPrice.amount,
     paymentPlan: undefined,
-  }
-}
+  };
+};

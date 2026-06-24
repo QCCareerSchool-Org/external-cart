@@ -1,9 +1,9 @@
 'use client';
 
-import type { FC, FormEventHandler, PropsWithChildren, SubmitEventHandler } from "react";
+import type { FC, PropsWithChildren, SubmitEventHandler } from "react";
 import { useActionState } from "react";
 import { initialState } from "./state";
-import { checkout } from "./action";
+import { action } from "./action";
 import { useCartState } from "../cartState";
 
 interface Props {
@@ -16,7 +16,7 @@ const preventFormReset: SubmitEventHandler<HTMLFormElement> = e => {
 
 export const Form: FC<PropsWithChildren<Props>> = ({ countryCode, children }) => {
   const [cartState] = useCartState();
-  const [state, dispatch, isPending] = useActionState(checkout, initialState);
+  const [state, dispatch, isPending] = useActionState(action, initialState);
 
   return (
     <form action={dispatch} onReset={preventFormReset}>
