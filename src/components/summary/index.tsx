@@ -3,6 +3,7 @@
 import Big from 'big.js';
 import type { FC } from 'react';
 
+import { Card } from '../card';
 import { useCartState } from '../cartState';
 import type { Course } from '@/domain/course';
 import type { CourseCode } from '@/domain/courseCode';
@@ -45,7 +46,7 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
   const selectedWithoutPrices = cartState.selected.filter(courseCode => !prices[courseCode]);
 
   return (
-    <section className="rounded-[2rem] border border-[#2a1a11] bg-[#2a1a11] p-5 text-[#fff6e8] shadow-[0_20px_70px_rgba(42,26,17,0.24)] lg:sticky lg:top-6">
+    <Card as="section" variant="panelDark" className="lg:sticky lg:top-6">
       <div className="mb-5 border-b border-[#fff6e8]/20 pb-5">
         <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#f6c44f]">Step 2</p>
         <h2 className="mt-1 font-serif text-3xl font-black tracking-[-0.04em]">Review</h2>
@@ -55,28 +56,26 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
       </div>
 
       {selectedCourses.length === 0 ? (
-        <div className="rounded-3xl border border-dashed border-[#fff6e8]/25 p-5 text-sm text-[#e6c9aa]">
+        <Card as="div" variant="empty">
           No courses selected yet.
-        </div>
+        </Card>
       ) : (
         <div className="space-y-3">
           {selectedCourses.map(course => {
             const selectedPrice = selectedPrices.find(item => item.courseCode === course.code);
 
             return (
-              <div key={course.code} className="rounded-3xl bg-[#fff6e8]/10 p-4">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-[#f6c44f]">{course.code}</p>
-                    <p className="mt-1 text-sm font-bold leading-5">{course.name}</p>
-                  </div>
-                  <p className="shrink-0 text-sm font-black text-[#fff6e8]">
-                    {selectedPrice
-                      ? formatPrice(selectedPrice.price.amount, selectedPrice.price.currencyCode)
-                      : 'Pending'}
-                  </p>
+              <Card as="div" variant="optionDark" key={course.code} className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-[#f6c44f]">{course.code}</p>
+                  <p className="mt-1 text-sm font-bold leading-5">{course.name}</p>
                 </div>
-              </div>
+                <p className="shrink-0 text-sm font-black text-[#fff6e8]">
+                  {selectedPrice
+                    ? formatPrice(selectedPrice.price.amount, selectedPrice.price.currencyCode)
+                    : 'Pending'}
+                </p>
+              </Card>
             );
           })}
         </div>
@@ -102,6 +101,6 @@ export const Summary: FC<Props> = ({ courses, prices }) => {
           Price unavailable for: {selectedWithoutPrices.join(', ')}
         </p>
       )}
-    </section>
+    </Card>
   );
 };

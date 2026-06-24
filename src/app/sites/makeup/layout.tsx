@@ -30,7 +30,7 @@ const MakeupLayout: LayoutComponent = async ({ children }) => {
   const { countryCode } = await getServerData();
 
   return (
-    <div>
+    <>
       <GoogleAnalytics id="G-BS7XJJLV0G" adsId="AW-1071836607" />
       <Facebook id="1531219047676834" />
       <Tiktok id="CJ6H6NBC77UC1837TT70" />
@@ -39,7 +39,7 @@ const MakeupLayout: LayoutComponent = async ({ children }) => {
       {children}
       <Footer countryCode={countryCode} />
       <Script src="/makeup/chat.js" />
-    </div>
+    </>
   );
 };
 

@@ -1,8 +1,9 @@
 'use client';
 
-import type { FC, PropsWithChildren, SubmitEventHandler } from 'react';
+import type { FC, PropsWithChildren, SyntheticEvent } from 'react';
 import { useActionState } from 'react';
 
+import { Card } from '../card';
 import { action } from './action';
 import { initialState } from './state';
 import { useCartState } from '../cartState';
@@ -11,7 +12,7 @@ interface Props {
   countryCode: string;
 }
 
-const handleReset: SubmitEventHandler<HTMLFormElement> = e => {
+const handleReset = (e: SyntheticEvent<HTMLFormElement>): void => {
   e.preventDefault();
 };
 
@@ -23,7 +24,7 @@ export const Form: FC<PropsWithChildren<Props>> = ({ countryCode, children }) =>
     <form action={dispatch} onReset={handleReset} className="space-y-6">
       <input type="hidden" name="countryCode" value={countryCode} />
       {children}
-      <div className="rounded-[1.75rem] border border-[#d8c4a5] bg-[#fffaf1]/90 p-4 shadow-[0_16px_50px_rgba(69,43,24,0.10)] sm:flex sm:items-center sm:justify-between sm:gap-5">
+      <Card as="div" variant="cta" className="sm:flex sm:items-center sm:justify-between sm:gap-5">
         <div>
           <p className="text-sm font-black uppercase tracking-[0.18em] text-[#a84d2a]">Ready?</p>
           <p className="mt-1 text-sm font-semibold text-[#7a6249]">
@@ -44,7 +45,7 @@ export const Form: FC<PropsWithChildren<Props>> = ({ countryCode, children }) =>
         >
           {isPending ? 'Creating checkout' : 'Checkout'}
         </button>
-      </div>
+      </Card>
     </form>
   );
 };

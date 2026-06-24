@@ -2,9 +2,11 @@
 
 import type { ChangeEventHandler, FC } from 'react';
 
+import { Card } from '../card';
 import type { Course } from '@/domain/course';
 import type { CourseCode } from '@/domain/courseCode';
 import type { SerializedPrice } from '@/domain/price';
+import { cn } from '@/lib/cn';
 
 interface Props {
   course: Course;
@@ -24,12 +26,11 @@ export const Checkbox: FC<Props> = ({ course, price, checked, onChange }) => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = e => {
     onChange(course.code, e.target.checked);
   };
-  const cardClassName = checked
-    ? 'flex gap-4 rounded-3xl border border-[#e36537] bg-[#fff2df] p-4 shadow-[0_16px_34px_rgba(227,101,55,0.18)] transition duration-200 -translate-y-0.5'
-    : 'flex gap-4 rounded-3xl border border-[#dfccb0] bg-white/80 p-4 shadow-[0_10px_26px_rgba(71,44,25,0.08)] transition duration-200 group-hover:-translate-y-0.5 group-hover:border-[#c28f58]';
+  const cardBaseClassName = 'flex gap-4 p-4';
+  const markerBaseClassName = 'mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-sm font-black transition';
   const markerClassName = checked
-    ? 'mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#e36537] bg-[#e36537] text-sm font-black text-white transition'
-    : 'mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#c9ad87] bg-[#fffaf1] text-sm font-black text-transparent transition';
+    ? cn(markerBaseClassName, 'border-[#e36537] bg-[#e36537] text-white')
+    : cn(markerBaseClassName, 'border-[#c9ad87] bg-[#fffaf1] text-transparent');
 
   return (
     <label className="group relative block cursor-pointer">
@@ -41,7 +42,13 @@ export const Checkbox: FC<Props> = ({ course, price, checked, onChange }) => {
         checked={checked}
         onChange={handleChange}
       />
-      <span className={cardClassName}>
+      <Card
+        as="span"
+        variant={checked ? 'optionSelected' : 'option'}
+        className={checked
+          ? cn(cardBaseClassName, '-translate-y-0.5')
+          : cn(cardBaseClassName, 'group-hover:-translate-y-0.5 group-hover:border-[#c28f58]')}
+      >
         <span className={markerClassName}>
           ✓
         </span>
@@ -63,7 +70,7 @@ export const Checkbox: FC<Props> = ({ course, price, checked, onChange }) => {
             {price ? formatPrice(price) : 'Checkout availability confirmed on submit'}
           </span>
         </span>
-      </span>
+      </Card>
     </label>
   );
 };

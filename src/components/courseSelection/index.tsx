@@ -2,6 +2,7 @@
 
 import type { FC } from 'react';
 
+import { Card } from '../card';
 import { useCartState } from '../cartState';
 import { Checkbox } from './checkbox';
 import type { Course } from '@/domain/course';
@@ -26,7 +27,7 @@ export const CourseSelection: FC<Props> = ({ courses, prices }) => {
   };
 
   return (
-    <section className="rounded-[2rem] border border-[#d8c4a5] bg-[#fffaf1]/85 p-4 shadow-[0_18px_60px_rgba(69,43,24,0.12)] backdrop-blur sm:p-6">
+    <Card as="section" variant="panel">
       <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#a84d2a]">Step 1</p>
@@ -46,6 +47,6 @@ export const CourseSelection: FC<Props> = ({ courses, prices }) => {
           />
         ))}
       </div>
-    </section>
+    </Card>
   );
 };
