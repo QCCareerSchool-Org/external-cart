@@ -2,19 +2,12 @@ import { unstable_cache } from "next/cache";
 
 import type { Course } from "@/domain/course";
 import type { CoursePriceMap } from "@/domain/coursePrice";
-import type { SerializedPrice } from "@/domain/price";
 import { fetchPrice } from "./fetchPrice";
 
-const getCachedPrice = unstable_cache(
-  async (shopifyProductId: string, countryCode: string): Promise<SerializedPrice | undefined> => {
-    return fetchPrice(shopifyProductId, countryCode);
-  },
-  ['shopify-price'],
-  {
-    revalidate: 60 * 15,
-    tags: ['shopify-prices'],
-  },
-);
+const getCachedPrice = unstable_cache(fetchPrice, [], {
+  revalidate: 60 * 15,
+  tags: ['shopify-prices']
+});
 
 export const getCoursePrices = async (courses: Course[], countryCode: string): Promise<CoursePriceMap> => {
   const prices: CoursePriceMap = {};
