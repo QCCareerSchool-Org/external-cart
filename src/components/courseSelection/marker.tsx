@@ -6,7 +6,7 @@ interface Props {
   selected: boolean;
 }
 
-const baseClassName = 'mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-sm font-black transition';
+const baseClassName = 'flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 text-xs font-black transition';
 const unselectedclassName = cn(baseClassName, 'border-border bg-surface text-transparent');
 const selectedClassName = cn(baseClassName, 'border-primary bg-primary text-foreground-inverse');
 

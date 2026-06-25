@@ -17,7 +17,7 @@ const eslintConfig = defineConfig([
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
-        projectService: true,
+        // projectService: true,
       },
     },
     plugins: {

@@ -1,4 +1,4 @@
-export const schoolNames = [ 'QC Design School', 'QC Event School', 'QC Makeup Academy', 'QC Pet Studies', 'QC Wellness Studies', 'Winghill Writing School', 'Paw Parent Academy' ] as const;
+export const schoolNames = [ 'QC Career School', 'QC Design School', 'QC Event School', 'QC Makeup Academy', 'QC Pet Studies', 'QC Wellness Studies', 'Winghill Writing School', 'Paw Parent Academy' ] as const;
 
 export type SchoolName = typeof schoolNames[number];
 

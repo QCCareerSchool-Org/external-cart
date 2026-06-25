@@ -12,7 +12,11 @@ export const metadata: Metadata = {
 const RootLayout: LayoutComponent = ({ children }) => {
   return (
     <html lang="en" className={`${inter.variable} ${neueHaasDisplay.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        <main className="min-h-screen">
+          {children}
+        </main>
+      </body>
     </html>
   );
 };

@@ -8,7 +8,7 @@ interface Props {
   selected: boolean;
 }
 
-const baseClassName = 'flex gap-4 p-4 shadow bg-surface transition duration-200';
+const baseClassName = 'flex gap-3 p-3 items-center shadow transition duration-200';
 const unSelectedClassName = cn(baseClassName, 'border-border group-hover:-translate-y-0.5 group-hover:border-primary');
 const selectedClassName = cn(baseClassName, 'border-primary -translate-y-0.5');
 

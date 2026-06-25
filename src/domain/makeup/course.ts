@@ -1,9 +1,7 @@
 import type { Course } from '../course';
 import type { MakeupCourseCode } from './courseCode';
 
-type MakeupCourse = Course;
-
-export const makeupCourses: MakeupCourse[] = [
+export const makeupCourses: Course<MakeupCourseCode>[] = [
   {
     code: 'ab',
     name: 'Airbrush Makeup Workshop',
@@ -51,6 +49,6 @@ export const makeupCourses: MakeupCourse[] = [
   },
 ];
 
-export const getMakeupCourse = (courseCode: MakeupCourseCode): MakeupCourse | undefined => {
+export const getMakeupCourse = (courseCode: MakeupCourseCode): Course<MakeupCourseCode> | undefined => {
   return makeupCourses.find(c => c.code === courseCode);
 };

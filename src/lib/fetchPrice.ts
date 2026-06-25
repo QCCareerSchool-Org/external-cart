@@ -10,6 +10,7 @@ export const fetchPrice = async (shopifyProductId: string, countryCode: string):
 
   const productResult = await getProduct(shopifyProductId, countryCode);
   if (!productResult.success) {
+    console.error(productResult.error);
     return;
   }
 

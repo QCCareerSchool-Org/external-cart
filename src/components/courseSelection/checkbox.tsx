@@ -33,8 +33,8 @@ export const Checkbox: FC<Props> = ({ course, serializedPrice, checked, onChange
         onChange={handleChange}
       />
       <CourseOption selected={checked}>
-        <div className="text-lg font-bold leading-tight text-foreground">{course.name}</div>
-        <div className="mt-2 text-sm font-bold text-muted">{price ? formatPrice(price) : '(Price pending)'}</div>
+        <div className="text-sm sm:text-base font-bold leading-tight text-foreground">{course.name}</div>
+        <div className="mt-1 text-xs sm:text-sm leading-tight text-muted">{price ? formatPrice(price) : '(Price pending)'}</div>
       </CourseOption>
     </label>
   );

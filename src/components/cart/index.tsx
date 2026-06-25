@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { CartStateProvider } from '../cartState';
+import { CartStateProvider } from '../providers/cartState';
 import { CourseSelection } from '../courseSelection';
 import { Summary } from '../summary';
 import { Form } from '@/components/form';

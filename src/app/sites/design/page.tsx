@@ -2,6 +2,7 @@ import { Card } from '@/components/card';
 import { Cart } from '@/components/cart';
 import { Container } from '@/components/container';
 import { Pill } from '@/components/pill';
+import { designCourses } from '@/domain/design/course';
 import { makeupCourses } from '@/domain/makeup/course';
 import { getServerData } from '@/lib/getServerData';
 import type { PageComponent } from '@/serverComponent';
@@ -21,7 +22,7 @@ const MakeupPage: PageComponent = async () => {
             <p className="mt-5 max-w-xl text-foreground-inverse/75 sm:text-xl font-light">Select the programs you want, review your total, and continue to Shopify checkout when everything looks right.</p>
           </div>
         </Card>
-        <Cart courses={makeupCourses} countryCode={countryCode} />
+        <Cart courses={designCourses} countryCode={countryCode} />
       </div>
     </Container>
   );

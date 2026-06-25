@@ -4,7 +4,7 @@ import type { FC } from 'react';
 
 import { Card } from '../card';
 import { Checkbox } from './checkbox';
-import { useCartState } from '../cartState';
+import { useCartState } from '../providers/cartState';
 import { SectionEyebrow } from '../sectionEyebrow';
 import type { Course } from '@/domain/course';
 import type { CourseCode } from '@/domain/courseCode';

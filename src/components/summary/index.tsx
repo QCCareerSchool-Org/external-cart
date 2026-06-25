@@ -4,8 +4,8 @@ import type { FC } from 'react';
 
 import { Button } from '../button';
 import { Card } from '../card';
-import { useCartState } from '../cartState';
 import { useFormContext } from '../form/context';
+import { useCartState } from '../providers/cartState';
 import { SectionEyebrow } from '../sectionEyebrow';
 import { SummarySection } from './summarySection';
 import type { Course } from '@/domain/course';
@@ -13,6 +13,9 @@ import type { CourseCode } from '@/domain/courseCode';
 import type { CoursePriceMap } from '@/domain/coursePrice';
 import { deserializePrice, type Price } from '@/domain/price';
 import { formatPrice } from '@/lib/formatPrice';
+import Image from 'next/image';
+
+import ShopifyIcon from './shopify.svg'
 
 interface Props {
   courses: Course[];
@@ -100,12 +103,13 @@ export const Summary: FC<Props> = ({ courses, serializedPrices }) => {
             : `${cartState.selected.length} course${cartState.selected.length === 1 ? '' : 's'} selected.`}
         </p>
         {state.error && (
-          <p className="mt-3 rounded-2xl bg-primary-muted px-3 py-2 text-sm font-semibold text-primary">
+          <p className="mt-3 rounded-2xl bg-primary-muted px-4 py-2 text-sm font-semibold text-primary">
             {state.error}
           </p>
         )}
-        <Button className="mt-4 w-full" type="submit" disabled={cartState.selected.length === 0 || isPending}>
-          {isPending ? 'Creating checkout' : 'Checkout'}
+        <Button className="mt-4 w-full py-3" type="submit" disabled={cartState.selected.length === 0 || isPending}>
+          <Image src={ShopifyIcon} height={28} alt="" />
+          {/* {isPending ? 'Creating checkout' : 'Checkout'} */}
         </Button>
       </SummarySection>
     </Card>

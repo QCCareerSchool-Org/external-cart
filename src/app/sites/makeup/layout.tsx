@@ -3,7 +3,9 @@ import Script from 'next/script';
 
 import { Footer } from './footer';
 import { Header } from './header';
+import { UserValuesProvider } from '@/components/providers/userValuesProvider';
 import { getServerData } from '@/lib/getServerData';
+import { getUserValues } from '@/lib/userValues';
 import { Bing } from '@/scripts/bing';
 import { Facebook } from '@/scripts/facebook';
 import { GoogleAnalytics } from '@/scripts/googleAnalytics';
@@ -28,17 +30,25 @@ export const metadata: Metadata = {
 
 const MakeupLayout: LayoutComponent = async ({ children }) => {
   const { countryCode } = await getServerData();
+  const userValues = await getUserValues();
 
   return (
     <>
-      <GoogleAnalytics id="G-BS7XJJLV0G" adsId="AW-1071836607" />
-      <Facebook id="1531219047676834" />
-      <Tiktok id="CJ6H6NBC77UC1837TT70" />
-      <Bing id="5105215" />
-      <div className="makeup-theme min-h-screen bg-background text-foreground">
-        <Header countryCode={countryCode} />
-        {children}
-        <Footer countryCode={countryCode} />
+      <UserValuesProvider {...userValues}>
+        <GoogleAnalytics id="G-BS7XJJLV0G" adsId="AW-1071836607" userValues={userValues} />
+        <Facebook id="1531219047676834" userValues={userValues} />
+        <Tiktok id="CJ6H6NBC77UC1837TT70" />
+        <Bing id="5105215" userValues={userValues} />
+        <div className="makeup-theme min-h-screen bg-background text-foreground">
+          <Header countryCode={countryCode} />
+          {children}
+          <Footer countryCode={countryCode} />
+        </div>
+      </UserValuesProvider>
+      <div className="container w-auto p-6">
+        <pre>
+          {JSON.stringify({ userValues }, null, ' ')}
+        </pre>
       </div>
       <Script src="/makeup/chat.js" />
     </>
