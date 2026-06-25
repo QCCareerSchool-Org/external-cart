@@ -34,7 +34,7 @@ export const CourseSelection: FC<Props> = ({ courses, prices }) => {
           <SectionEyebrow>Step 1</SectionEyebrow>
           <h2 className="mt-1">Choose your courses</h2>
         </div>
-        <p className="text-sm font-semibold text-muted">{cartState.selected.length} selected</p>
+        <div className="text-sm font-semibold text-muted">{cartState.selected.length} selected</div>
       </div>
 
       <div className="grid gap-3">
