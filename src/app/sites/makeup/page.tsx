@@ -13,7 +13,7 @@ const MakeupPage: PageComponent = async () => {
     <main className="min-h-screen">
       <Container>
         <div className="flex flex-col gap-6 py-6">
-          <Card as="header" variant="hero">
+          <Card as="header" className="border-0 overflow-hidden bg-surface-inverse text-foreground-inverse">
             <div className="absolute -right-16 -top-20 h-56 w-56 rounded-full bg-primary opacity-80 blur-2xl" />
             <div className="absolute bottom-0 right-24 h-28 w-56 rotate-[-18deg] rounded-full bg-primary/30 blur-xl" />
             <div className="relative max-w-2xl">

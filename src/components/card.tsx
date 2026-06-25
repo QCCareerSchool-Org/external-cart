@@ -5,7 +5,6 @@ import { cn } from '@/lib/cn';
 type CardAs = 'div' | 'section' | 'header' | 'footer' | 'span';
 
 type CardVariant =
-  | 'hero'
   | 'panel'
   | 'panelDark'
   | 'option'
@@ -19,16 +18,15 @@ interface Props {
 }
 
 const variantClassNames: Record<CardVariant, string> = {
-  hero: 'overflow-hidden bg-surface-inverse text-foreground-inverse',
-  panel: 'border border-border bg-surface',
-  panelDark: 'border border-surface-inverse bg-surface-inverse text-foreground-inverse shadow',
-  option: 'border border-border bg-surface shadow transition duration-200',
-  optionSelected: 'border border-primary bg-primary-muted shadow transition duration-200',
-  empty: 'border border-dashed border-foreground-inverse/25 text-sm text-foreground-inverse/70',
+  panel: 'border-border bg-surface',
+  panelDark: 'border-surface-inverse bg-surface-inverse text-foreground-inverse shadow',
+  option: 'border-border bg-surface shadow transition duration-200',
+  optionSelected: 'border-primary bg-primary-muted shadow transition duration-200',
+  empty: 'border-dashed border-foreground-inverse/25 text-sm text-foreground-inverse/70',
 };
 
 export const Card: FC<PropsWithChildren<Props>> = ({ as: Component = 'div', variant = 'panel', className, children }) => (
-  <Component className={cn('relative rounded-xl p-6', variantClassNames[variant], className)}>
+  <Component className={cn('border relative rounded-xl p-6', variantClassNames[variant], className)}>
     {children}
   </Component>
 );

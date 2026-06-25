@@ -63,7 +63,7 @@ export const Summary: FC<Props> = ({ courses, serializedPrices }) => {
         <SectionEyebrow>Step 2</SectionEyebrow>
         <h2 className="mt-1">Review</h2>
         <p className="mt-2 leading-6 text-foreground/80">
-          Your checkout cart is created only when you press checkout.
+          Review your selections and total, then continue to checkout when you&apos;re ready.
         </p>
       </div>
 
