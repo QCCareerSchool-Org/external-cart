@@ -20,7 +20,7 @@ export const Cart: FC<Props> = async ({ courses, countryCode }) => {
       <Form countryCode={countryCode}>
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start">
           <CourseSelection courses={courses} prices={prices} />
-          <Summary courses={courses} prices={prices} />
+          <Summary courses={courses} serializedPrices={prices} />
         </div>
       </Form>
     </CartStateProvider>

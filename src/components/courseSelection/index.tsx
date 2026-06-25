@@ -31,7 +31,7 @@ export const CourseSelection: FC<Props> = ({ courses, prices }) => {
     <Card as="section">
       <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <SectionEyebrow tone="light">Step 1</SectionEyebrow>
+          <SectionEyebrow>Step 1</SectionEyebrow>
           <h2 className="mt-1">Choose your courses</h2>
         </div>
         <p className="text-sm font-semibold text-muted">{cartState.selected.length} selected</p>
@@ -42,7 +42,7 @@ export const CourseSelection: FC<Props> = ({ courses, prices }) => {
           <Checkbox
             key={course.code}
             course={course}
-            price={prices[course.code]}
+            serializedPrice={prices[course.code]}
             checked={cartState.selected.includes(course.code)}
             onChange={handleChange}
           />

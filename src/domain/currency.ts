@@ -1,3 +1,45 @@
+import type { CurrencyCode } from './currencyCode';
+
+export interface Currency {
+  code: CurrencyCode;
+  name: string;
+  symbol: string;
+}
+
+const currenciesByCode: Record<CurrencyCode, Currency> = {
+  CAD: {
+    code: 'CAD',
+    name: 'Canadian Dollar',
+    symbol: '$',
+  },
+  AUD: {
+    code: 'AUD',
+    name: 'Australian Dollar',
+    symbol: '$',
+  },
+  NZD: {
+    code: 'NZD',
+    name: 'New Zealand Dollar',
+    symbol: '$',
+  },
+  GBP: {
+    code: 'GBP',
+    name: 'Pound Sterling',
+    symbol: '£',
+  },
+  USD: {
+    code: 'USD',
+    name: 'US Dollar',
+    symbol: '$',
+  },
+};
+
+export const currencies = Object.values(currenciesByCode);
+
+export const getCurrency = (currencyCode: CurrencyCode): Currency => {
+  return currenciesByCode[currencyCode];
+};
+
 const gbpCountries = new Set([ 'GB', 'IM', 'GG', 'JE', 'GS' ]);
 const audCountries = new Set([ 'AU', 'CX', 'CC', 'NR', 'NF', 'HM' ]);
 const nzdCountries = new Set([ 'NZ', 'TK', 'NU', 'PN' ]);

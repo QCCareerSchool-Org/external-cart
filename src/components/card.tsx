@@ -14,8 +14,8 @@ type CardVariant =
 
 interface Props {
   as?: CardAs;
-  className?: string;
   variant?: CardVariant;
+  className?: string;
 }
 
 const variantClassNames: Record<CardVariant, string> = {
@@ -23,16 +23,12 @@ const variantClassNames: Record<CardVariant, string> = {
   panel: 'border border-border bg-surface',
   panelDark: 'border border-surface-inverse bg-surface-inverse text-foreground-inverse shadow',
   option: 'border border-border bg-surface shadow transition duration-200',
-  optionSelected: 'border border-accent bg-accent-muted shadow transition duration-200',
+  optionSelected: 'border border-primary bg-primary-muted shadow transition duration-200',
   empty: 'border border-dashed border-foreground-inverse/25 text-sm text-foreground-inverse/70',
 };
 
-export const Card: FC<PropsWithChildren<Props>> = ({ as = 'div', className, children, variant = 'panel' }) => {
-  const Component = as;
-
-  return (
-    <Component className={cn('relative rounded-xl p-6', variantClassNames[variant], className)}>
-      {children}
-    </Component>
-  );
-};
+export const Card: FC<PropsWithChildren<Props>> = ({ as: Component = 'div', variant = 'panel', className, children }) => (
+  <Component className={cn('relative rounded-xl p-6', variantClassNames[variant], className)}>
+    {children}
+  </Component>
+);

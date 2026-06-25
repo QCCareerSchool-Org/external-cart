@@ -1,9 +1,9 @@
 import Big from 'big.js';
 
-import type { CurrencyCode } from './currencyCode';
+import type { Currency } from './currency';
 
 export interface Price {
-  currencyCode: CurrencyCode;
+  currency: Currency;
   amount: Big;
   original?: Big;
   paymentPlan?: {
@@ -14,7 +14,7 @@ export interface Price {
 }
 
 export interface SerializedPrice {
-  currencyCode: CurrencyCode;
+  currency: Currency;
   amount: string;
   original?: string;
   paymentPlan?: {
@@ -26,7 +26,7 @@ export interface SerializedPrice {
 
 export const serializePrice = (price: Price): SerializedPrice => {
   return {
-    currencyCode: price.currencyCode,
+    currency: price.currency,
     amount: price.amount.toString(),
     original: price.original?.toString(),
     paymentPlan: price.paymentPlan && {
@@ -39,7 +39,7 @@ export const serializePrice = (price: Price): SerializedPrice => {
 
 export const deserializePrice = (price: SerializedPrice): Price => {
   return {
-    currencyCode: price.currencyCode,
+    currency: price.currency,
     amount: Big(price.amount),
     original: price.original === undefined ? undefined : Big(price.original),
     paymentPlan: price.paymentPlan && {

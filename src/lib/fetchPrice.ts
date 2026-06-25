@@ -1,4 +1,5 @@
 import { getProduct } from './shopify/getProduct';
+import { getCurrency } from '@/domain/currency';
 import { isCurrencyCode } from '@/domain/currencyCode';
 import type { SerializedPrice } from '@/domain/price';
 
@@ -21,7 +22,7 @@ export const fetchPrice = async (shopifyProductId: string, countryCode: string):
   }
 
   return {
-    currencyCode,
+    currency: getCurrency(currencyCode),
     amount: variant.price.amount,
     original: variant.compareAtPrice === null ? undefined : variant.compareAtPrice.amount,
     paymentPlan: undefined,

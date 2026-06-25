@@ -9,9 +9,8 @@
   --foreground-inverse: #f9fafb;
   --muted: #6b7280;
   --border: #d1d5db;
-  --accent: #2563eb;
-  --accent-muted: #dbeafe;
-  --highlight: #0ea5e9;
+  --primary: #2563eb;
+  --primary-muted: #dbeafe;
   --box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 0.15);
 }
 
@@ -24,9 +23,8 @@
   --foreground-inverse: #fff7f4;
   --muted: #75666a;
   --border: #e5d8d4;
-  --accent: #c92545;
-  --accent-muted: #fde7ec;
-  --highlight: #ff5c7a;
+  --primary: #ff0069;
+  --primary-muted: #fde7ec;
 }
 
 .design-theme {
@@ -38,9 +36,8 @@
   --foreground-inverse: #f8fafc;
   --muted: #475569;
   --border: #bfdbfe;
-  --accent: #2563eb;
-  --accent-muted: #dbeafe;
-  --highlight: #38bdf8;
+  --primary: #2563eb;
+  --primary-muted: #dbeafe;
 }
 
 @theme inline {
@@ -52,9 +49,8 @@
   --color-foreground-inverse: var(--foreground-inverse);
   --color-muted: var(--muted);
   --color-border: var(--border);
-  --color-accent: var(--accent);
-  --color-accent-muted: var(--accent-muted);
-  --color-highlight: var(--highlight);
+  --color-primary: var(--primary);
+  --color-primary-muted: var(--primary-muted);
   --shadow: var(--box-shadow);
   --font-sans: var(--font-inter);
   --font-display: var(--font-neue-haas-display);

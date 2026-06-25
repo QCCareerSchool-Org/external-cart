@@ -14,8 +14,8 @@ const MakeupPage: PageComponent = async () => {
       <Container>
         <div className="flex flex-col gap-6 py-6">
           <Card as="header" variant="hero">
-            <div className="absolute -right-16 -top-20 h-56 w-56 rounded-full bg-accent opacity-80 blur-2xl" />
-            <div className="absolute bottom-0 right-24 h-28 w-56 rotate-[-18deg] rounded-full bg-highlight/30 blur-xl" />
+            <div className="absolute -right-16 -top-20 h-56 w-56 rounded-full bg-primary opacity-80 blur-2xl" />
+            <div className="absolute bottom-0 right-24 h-28 w-56 rotate-[-18deg] rounded-full bg-primary/30 blur-xl" />
             <div className="relative max-w-2xl">
               <Pill className="mb-5">QC Makeup Academy</Pill>
               <h1>Build your course cart.</h1>
